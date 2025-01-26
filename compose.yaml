@@ -1,13 +1,18 @@
 services:
   front:
     container_name: front
+    tty: true
+    stdin_open: true
     build:
       context: .
       dockerfile: docker/front/Dockerfile
     ports:
       - "3000:3000"
+      - "24678:24678"
     volumes:
-      - ./src/front:/nuxt/app:rw
+      - ./src/front:/nuxt/app
+      - /nuxt/app/node_modules
+      - front_node_modules:/nuxt/app/node_modules
     networks:
       - app
   database:
@@ -30,3 +35,4 @@ networks:
 
 volumes:
   mysql-data:
+  front_node_modules:

@@ -2,6 +2,7 @@
 class Todo {
   name: string
   done: boolean
+
   constructor(name: string, done: boolean) {
     this.name = name
     this.done = done
@@ -14,9 +15,10 @@ const loading = ref<boolean>(false)
 
 const addTodo = () => {
   loading.value = true
-  console.log(input.value)
   todoItems.value.push(new Todo(input.value, false))
+  console.log(todoItems.value)
   loading.value = false
+  input.value = ''
 }
 </script>
 
@@ -28,7 +30,7 @@ const addTodo = () => {
     </div>
   </div>
   <div class="flex items-center gap-3">
-    <DataTable :value="todoItems" paginator :rows="5" tableStyle="min-width: 50rem">
+    <DataTable :value="todoItems" paginator :rows="5">
       <Column field="name" header="Name"></Column>
       <Column field="done" header="Done"></Column>
     </DataTable>

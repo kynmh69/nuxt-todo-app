@@ -1,4 +1,5 @@
 import Aura from '@primevue/themes/aura';
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
     modules: [
@@ -11,6 +12,12 @@ export default defineNuxtConfig({
             },
             ripple: true
         }
+    },
+    css: ['assets/css/main.css'],
+    vite: {
+        plugins: [
+            tailwindcss(),
+        ]
     },
     devtools: {enabled: true},
     compatibilityDate: "2025-01-26",
